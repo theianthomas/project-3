@@ -21,9 +21,10 @@ app = Flask(__name__)
 conn = 'mongodb://localhost:27017'
 client = pymongo.MongoClient(conn)
 db = client.emission
+db3=client.vaemission
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index1.html")
 
 @app.route("/api")
 def data():
@@ -31,5 +32,12 @@ def data():
     print(x)
     x_json = dumps(x)
     return x_json
+
+@app.route("/api3")
+def data3():
+    x3 = db3.vaco2.find()
+    print(x3)
+    x3_json = dumps(x3)
+    return x3_json
 if __name__ == "__main__":
     app.run(debug=True)

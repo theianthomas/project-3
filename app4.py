@@ -26,6 +26,14 @@ db3=client.vaemission
 def index():
     return render_template("index1.html")
 
+
+
+
+@app.route("/index3.html")
+def index3():
+    return render_template("index3.html")
+
+
 @app.route("/api")
 def data():
     x = db.co2.find()
@@ -39,5 +47,13 @@ def data3():
     print(x3)
     x3_json = dumps(x3)
     return x3_json
+
+
+@app.route("/api4")
+def data4():
+    x4 = db3.vaco3.find()
+    print(x4)
+    x4_json = dumps(x4)
+    return x4_json
 if __name__ == "__main__":
     app.run(debug=True)

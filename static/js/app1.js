@@ -11,6 +11,7 @@ var chartMargin = {
   left: 0
 };
 
+var cData;
 // Define dimensions of the chart area
 var chartWidth = svgWidth - chartMargin.left - chartMargin.right;
 var chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
@@ -29,6 +30,7 @@ var chartGroup = svg.append("g")
 d3.json(url).then(function(Data) {
 
   console.log(Data);
+  cData = Data;
 
   // Cast the hours value to a number for each piece of tvData
   Data.forEach(function(d) {
@@ -70,5 +72,19 @@ d3.json(url).then(function(Data) {
     .attr("x", d => xBandScale(d.country))
     .attr("y", d => yLinearScale(d.co2))
     .attr("width", xBandScale.bandwidth())
-    .attr("height", d => chartHeight - yLinearScale(d.co2));
-});
+    .attr("height", d => chartHeight - yLinearScale(d.co2))
+    .append("text")
+    .attr("x", (xBandScale.bandwidth() / 2))             
+    .attr("y", 0 - (chartMargin.top / 2))
+    .attr("text-anchor", "middle")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Value vs Date Graph");
+
+    
+  });
+
+
+
+
+
